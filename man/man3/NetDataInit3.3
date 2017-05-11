@@ -1,0 +1,64 @@
+.\"
+.\"
+.\"
+.\"
+.\" $Id: NetDataInit3.3,v 1.1.1.1 2001/03/28 03:07:35 kobayasi Exp $
+.\"
+.Dd Sep 1, 1999
+.Dt NETDATAINIT3 3
+.Os FreeBSD
+.Sh 名前
+.Nm NetDataInit3
+.Nd 分割された入力データと，教師データを読み込む
+.Sh 機能
+.Fd #include <neuro.h>
+.Ft int
+.Fn NetDataInit3 "BPNet *bp" "Data *data" "const int pattern" "const int in1_num" "const char *infile1" "const char *infile2" "const char *outfile"
+.Sh 解説
+
+.Fn NetDataInit3
+関数は，入力データとして読み込むデータが2つのファイルに分かれている場合に
+用います．これは，教師強制型のリカレント・ニューラルネットワークの学習の
+際に有効な入力データの形式です．この関数でも教師データのファイル
+.Em outfile
+は必要です．
+
+.Sh 返り値
+返り値にはそれぞれ次のような意味があります:
+.Bl -tag -width Ds -offset indent
+.It Cm 0
+データの読み込みに成功した．
+.It Cm 1
+.Em infile1
+のオープンに失敗した．
+.It Cm 2
+.Em infile2
+のオープンに失敗した．
+.It Cm 3
+.Em outfile
+のオープンに失敗した．
+.El
+
+.Sh 例
+
+.Bd -literal -offset indent
+#include "neuro.h"
+
+BPNet bp;
+Data  *data;
+int   pattern, in1_num;
+char  infile1[128], infile2[128], outfile[128];
+ ...
+NetDataInit3(&bp, data, pattern, in1_num, infile1, infile2, outfile);
+
+.Sh 参照
+.Xr NetDataInit 3 ,
+.Xr NetDataInit2 3 ,
+.Xr NetDataInitRecog 3
+
+.Sh 歴史
+1994年に開発し，それ以降メンテナンスされています．関西大学総合情報学部に
+おいて，1997年から知識情報処理実習IIで使用しています．
+.Sh バグ
+特にありません．発見した場合は，kobayasi@res.kutc.kansai-u.ac.jp まで
+ご連絡下さい．

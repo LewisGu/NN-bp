@@ -1,0 +1,59 @@
+.\"
+.\"
+.\"
+.\"
+.\" $Id: NetVariance.3,v 1.1.1.1 2001/03/28 03:07:35 kobayasi Exp $
+.\"
+.Dd Sep 1, 1999
+.Dt NETVARIANCE 3
+.Os FreeBSD
+.Sh 名前
+.Nm NetVariance
+.Nd ある層の処理要素の出力の分散を求める
+.Sh 機能
+.Fd #include <neuro.h>
+.Ft int
+.Fn NetVariance "BPNet *bp" "Data *data" "const int pattern" "const int layer_num" "const double slope"
+
+.Sh 解説
+
+.Fn NetVariance
+関数は，
+.Em data
+に保持されている
+.Em pattern
+数の入力データを用いて，第
+.Em layer_num
+層(1, 2, ...)の処理要素の出力値の分散を求めます．分散の値は
+Pe構造体の Variance メンバ変数に格納されます．
+.br
+この関数は，ある程度学習の進んだニューラルネットワークの中間層の不要な処
+理要素(すべての入力パターンに関して同じような出力値を出力をしている処理
+要素)を探索するために有効です．
+
+.Sh 返り値
+最も小さい分散の値を持つ処理要素のインデックス番号を返します．
+
+.Sh 例
+
+.Bd -literal -offset indent
+#include "neuro.h"
+
+BPNet  bp;
+Data   *data;
+int    pattern, layer_num;
+double slope;
+ ...
+NetVariance(&bp, data, pattern, layer_num, slope);
+
+.Sh 関連項目
+.Xr NetOutput 3 ,
+.Xr NetSqError 3 ,
+.Xr NetExtOutVal 3
+
+.Sh 歴史
+1994年に開発し，それ以降メンテナンスされています．関西大学総合情報学部に
+おいて，1997年から知識情報処理実習IIで使用しています．
+.Sh バグ
+特にありません．発見した場合は，kobayasi@res.kutc.kansai-u.ac.jp まで
+ご連絡下さい．

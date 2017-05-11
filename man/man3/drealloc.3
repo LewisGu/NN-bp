@@ -1,0 +1,51 @@
+.\"
+.\"
+.\"
+.\"
+.\" $Id: drealloc.3,v 1.1.1.1 2001/03/28 03:07:35 kobayasi Exp $
+.\"
+.Dd Sep 1, 1999
+.Dt DREALLOC 3
+.Os FreeBSD
+.Sh 名前
+.Nm drealloc
+.Nd double型のデータ領域を確保する
+.Sh 機能
+.Fd #include <neuro.h>
+.Ft double *
+.Fn drealloc "double *d" "const int num"
+.Sh 解説
+
+.Fn drealloc
+関数は，double型のメモリ領域を再度確保する関数で，
+.Em num
+個のデータを保存するメモリ領域を確保します．確保した後，
+.Em d
+の指し示すメモリ領域の内容を確保した領域にコピーします．
+.br
+.Em num
+により確保した領域が
+.Em d
+の指し示すメモリ領域の大きさより大きい場合には，
+不足した部分の内容は不定となります．
+.Sh 返り値
+正しく取得できた場合はそのポインタを，取得できなかった場合にはその時点で
+プログラムは終了します．
+.Sh 例
+次の例は，
+.Em 5
+個のデータを保存するメモリ領域を確保します．
+.Bd -literal -offset indent
+#include "neuro.h"
+
+double *ptr, *ptr2;
+ ...
+ptr2 = dmalloc(ptr,5);
+.Sh 関連項目
+.Xr dmalloc 3 ,
+.Sh 歴史
+1994年に開発し，それ以降メンテナンスされています．関西大学総合情報学部に
+おいて，1997年から知識情報処理実習IIで使用しています．
+.Sh バグ
+特にありません．発見した場合は，kobayasi@res.kutc.kansai-u.ac.jp までご
+連絡下さい．

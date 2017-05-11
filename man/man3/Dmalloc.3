@@ -1,0 +1,44 @@
+.\"
+.\"
+.\"
+.\"
+.\" $Id: dmalloc.3,v 1.1.1.1 2001/03/28 03:07:35 kobayasi Exp $
+.\"
+.Dd Sep 1, 1999
+.Dt DMALLOC 3
+.Os FreeBSD
+.Sh 名前
+.Nm dmalloc
+.Nd double型のデータ領域を確保する
+.Sh 機能
+.Fd #include <neuro.h>
+.Ft double *
+.Fn dmalloc "const int num"
+.Sh 解説
+
+.Fn dmalloc
+関数は，double型のメモリ領域を確保する関数で，
+
+.Em num
+個のデータを保存するメモリ領域を確保します．
+.Sh 返り値
+正しく取得できた場合はそのポインタを，取得できなかった場合にはその時点で
+プログラムは終了します．
+.Sh 例
+次の例は，
+.Em 5
+個のデータを保存するメモリ領域を確保します．
+.Bd -literal -offset indent
+#include "neuro.h"
+
+double *ptr;
+ ...
+ptr = dmalloc(5);
+.Sh 関連項目
+.Xr intmalloc 3 ,
+.Sh 歴史
+1994年に開発し，それ以降メンテナンスされています．関西大学総合情報学部に
+おいて，1997年から知識情報処理実習IIで使用しています．
+.Sh バグ
+特にありません．発見した場合は，kobayasi@res.kutc.kansai-u.ac.jp までご
+連絡下さい．

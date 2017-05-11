@@ -1,0 +1,59 @@
+.\"
+.\"
+.\"
+.\"
+.\" $Id: NetDataSuper2.3,v 1.1.1.1 2001/03/28 03:07:35 kobayasi Exp $
+.\"
+.Dd Sep 1, 1999
+.Dt NETDATASUPER2 3
+.Os FreeBSD
+.Sh 名前
+.Nm NetDataSuper2
+.Nd 学習用データを読み込む
+.Sh 機能
+.Fd #include <neuro.h>
+.Ft int
+.Fn NetDataSuper2 "Data *data" "const int in" "const int out" "const int pattern" "const char *infile" "const char *outfile"
+.Sh 解説
+
+.Fn NetDataSuper2
+関数は，階層型ニューラルネットワークの構造(特に入出力に関係する処理要素数)に
+関係なく，入力データと教師データを読み込むための関数です．
+.br
+この関数は，複数の階層型ニューラルネットワークを統合したスーパーネット構造の
+ニューラルネットワークでの学習に有効なデータロード用の関数です．
+
+.Sh 返り値
+返り値には次のような意味を持たせています:
+.Bl -tag -width Ds -offset indent
+.It Cm 0
+データのロードに成功した．
+.It Cm 1
+.Em infile
+のオープンに失敗した．
+.It Cm 終了
+データを保存するためのメモリの確保に失敗した．
+.El
+
+.Sh 例
+
+.Bd -literal -offset indent
+#include "neuro.h"
+
+Data *data;
+int  in, out, pattern;
+char infile[128], outfile[128];
+ ...
+NetDataSuper2(data, in, out, pattern, infile, outfile);
+
+.Sh 関連項目
+.Xr NetDataInit 3 ,
+.Xr NetDataInit2 3 ,
+.Xr NetDataInit3 3
+
+.Sh 歴史
+1994年に開発し，それ以降メンテナンスされています．関西大学総合情報学部に
+おいて，1997年から知識情報処理実習IIで使用しています．
+.Sh バグ
+特にありません．発見した場合は，kobayasi@res.kutc.kansai-u.ac.jp まで
+ご連絡下さい．

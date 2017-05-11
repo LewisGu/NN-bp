@@ -1,0 +1,43 @@
+.\"
+.\"
+.\"
+.\"
+.\" $Id: intmalloc.3,v 1.1.1.1 2001/03/28 03:07:35 kobayasi Exp $
+.\"
+.Dd Sep 1, 1999
+.Dt INTMALLOC 3
+.Os FreeBSD
+.Sh 名前
+.Nm intmalloc
+.Nd int型のポインタを取得する
+.Sh 機能
+.Fd #include <neuro.h>
+.Ft int *
+.Fn intmalloc "const int num"
+.Sh 解説
+.Fn intmalloc
+関数は，int型の要素を
+.Em num
+個持つ配列へのポインタを取得します．主に階層型ニューラルネットワークの各
+階層の処理要素数を保持しておくために使用します．
+.Sh 返り値
+正しく取得できた場合はそのポインタを，取得できなかった場合にはその時点で
+プログラムは終了します．
+.Sh 例
+次の例は，
+.Em 3
+個の要素を持つ配列へのポインタを取得します．
+.Bd -literal -offset indent
+#include "neuro.h"
+
+int *ptr;
+ ...
+ptr = intmalloc(3);
+.Sh 参照
+.Xr Pepmalloc 3 ,
+.Xr scanf 3
+.Sh 歴史
+1994年に開発し，それ以降メンテナンスされています．関西大学総合情報学部に
+おいて，1997年から知識情報処理実習IIで使用しています．
+.Sh バグ
+特にありません．

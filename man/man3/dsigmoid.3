@@ -1,0 +1,55 @@
+.\"
+.\"
+.\"
+.\"
+.\" $Id: dsigmoid.3,v 1.1.1.1 2001/03/28 03:07:35 kobayasi Exp $
+.\"
+.Dd Sep 1, 1999
+.Dt DSIGMOID 3
+.Os FreeBSD
+.Sh 名前
+.Nm dsigmoid
+.Nd シグモイド関数の微分係数を求める
+.Sh 機能
+.Fd #include <neuro.h>
+.Ft double
+.Fn dsigmoid "const double x" "const double slope"
+.Sh 解説
+
+.Fn dsigmoid
+関数は，入力
+.Em x
+で，傾き
+.Em slope
+の時のシグモイド関数の微分係数を求める関数です．
+.Pp
+シグモイド関数の導関数は，
+.Pp
+y' = sigmoid(x, slope)*(1.0-sigmoid(x,slope))/slope
+.Pp
+であり，
+.Fn dsigmoid
+関数はこの値を求めます．
+
+.Sh 返り値
+シグモイド関数の微分係数を返します．
+
+.Sh 例
+
+.Bd -literal -offset indent
+#include "neuro.h"
+
+double x, yy;
+...
+x = 1.0;
+yy = dsigmoid(x, 1.0);
+
+.Sh 関連項目
+.Xr sigmoid 3
+
+.Sh 歴史
+1994年に開発し，それ以降メンテナンスされています．関西大学総合情報学部に
+おいて，1997年から知識情報処理実習IIで使用しています．
+.Sh バグ
+特にありません．発見した場合は，kobayasi@res.kutc.kansai-u.ac.jp まで
+ご連絡下さい．

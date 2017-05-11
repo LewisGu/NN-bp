@@ -1,0 +1,55 @@
+.\"
+.\"
+.\"
+.\"
+.\" $Id: NetDataInitRecog.3,v 1.1.1.1 2001/03/28 03:07:35 kobayasi Exp $
+.\"
+.Dd Sep 1, 1999
+.Dt NETDATAINITRECOG 3
+.Os FreeBSD
+.Sh 名前
+.Nm NetDataInitRecog
+.Nd 検証用データの読み込み
+.Sh 機能
+.Fd #include <neuro.h>
+.Ft int
+.Fn NetDataInitRecog "BPNet *bp" "Data *data" "const int pattern" "const char *infile"
+.Sh 解説
+
+.Fn NetDataInitRecog
+関数は，構築した階層型ニューラルネットワークを検証するためのデータを
+読み込むための関数です．
+.Em infile
+から
+.Em pattern
+数のデータを
+.Em data
+に読み込みます．この時，
+.Em bp
+に保存されている情報を使います．
+.Sh 返り値
+読み込みに成功した場合は 0 を，失敗した場合はその時点でプログラムが終了します．
+
+.Sh 例
+
+.Bd -literal -offset indent
+#include "neuro.h"
+
+BPNet bp;
+Data  *data;
+int   pattern;
+char  infile[128];
+ ...
+NetDataInitRecog(&bp, data, pattern, infile);
+
+.Sh 関連項目
+.Xr NetDataInit 3 ,
+.Xr NetDataInit2 3 ,
+.Xr NetDataInit3 3
+
+.Sh 歴史
+1994年に開発し，それ以降メンテナンスされています．関西大学総合情報学部に
+おいて，1997年から知識情報処理実習IIで使用しています．
+.Sh バグ
+特にありません．発見した場合は，kobayasi@res.kutc.kansai-u.ac.jp まで
+ご連絡下さい．

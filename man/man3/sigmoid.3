@@ -1,0 +1,51 @@
+.\"
+.\"
+.\"
+.\"
+.\" $Id: sigmoid.3,v 1.1.1.1 2001/03/28 03:07:35 kobayasi Exp $
+.\"
+.Dd Sep 1, 1999
+.Dt SIGMOID 3
+.Os FreeBSD
+.Sh 名前
+.Nm sigmoid
+.Nd シグモイド関数の値を求める
+.Sh 機能
+.Fd #include <neuro.h>
+.Ft double
+.Fn sigmoid "const double x" "const double slope"
+.Sh 解説
+
+.Fn sigmoid
+関数は，入力
+.Em x
+で，傾きが
+.Em slope
+の時のシグモイド関数の値を求める関数です．シグモイド関数とは，
+.Pp
+y = 1.0/(1.0+exp(-x/slope))
+.Pp
+の形をしている関数です．
+
+.Sh 返り値
+シグモイド関数の値を返します．
+
+.Sh 例
+
+.Bd -literal -offset indent
+#include "neuro.h"
+
+double x, y;
+ ...
+x = 1.0;
+y = sigmoid(x, 1.0);
+
+.Sh 関連項目
+.Xr dsigmoid 3
+
+.Sh 歴史
+1994年に開発し，それ以降メンテナンスされています．関西大学総合情報学部に
+おいて，1997年から知識情報処理実習IIで使用しています．
+.Sh バグ
+特にありません．発見した場合は，kobayasi@res.kutc.kansai-u.ac.jp まで
+ご連絡下さい．

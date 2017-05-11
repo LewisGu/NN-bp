@@ -1,0 +1,52 @@
+.\"
+.\"
+.\"
+.\"
+.\" $Id: NetDataInit2.3,v 1.1.1.1 2001/03/28 03:07:35 kobayasi Exp $
+.\"
+.Dd Sep 1, 1999
+.Dt NETDATAINIT2 3
+.Os FreeBSD
+.Sh 名前
+.Nm NetDataInit2
+.Nd 入力データと学習データを別々に読み込む
+.Sh 機能
+.Fd #include <neuro.h>
+.Ft int
+.Fn NetDataInit2 "BPNet *bp" "Data *data" "const int pattern" "const char *infile" "const char *outfile"
+.Sh 解説
+
+.Fn NetDataInit2
+関数は
+.Fn NetDataInit
+関数と同様，ファイルから階層型ニューラルネットワークの学習用データを
+読み込みます．この関数では，各パターンの入力データと教師データが別の
+ファイル(
+.Em infile
+と
+.Em outfile
+)に分けて保存していることが必要です．
+.Sh 返り値
+読み込みが成功した場合は 0 が，失敗した場合にはその時点でプログラムが
+終了します．
+.Sh 例
+
+.Bd -literal -offset indent
+#include "neuro.h"
+
+BPNet bp;
+Data  *data;
+int   pattern;
+char  infile[128], outfile[128];
+ ...
+NetDataInit2(&bp, data, pattern, infile, outfile);
+.Sh 参照
+.Xr NetDataInit 3 ,
+.Xr NetDataInit3 3 ,
+.Xr NetDataInitRecog 3
+.Sh 歴史
+1994年に開発し，それ以降メンテナンスされています．関西大学総合情報学部に
+おいて，1997年から知識情報処理実習IIで使用しています．
+.Sh バグ
+特にありません．発見した場合は，kobayasi@res.kutc.kansai-u.ac.jp まで
+ご連絡下さい．

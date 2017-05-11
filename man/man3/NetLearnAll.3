@@ -1,0 +1,57 @@
+.\"
+.\"
+.\"
+.\"
+.\" $Id: NetLearnAll.3,v 1.1.1.1 2001/03/28 03:07:35 kobayasi Exp $
+.\"
+.Dd Sep 1, 1999
+.Dt NETLEARNALL 3
+.Os FreeBSD
+.Sh 名前
+.Nm NetLearnAll
+.Nd すべての学習パターンを１度に学習する
+.Sh 機能
+.Fd #include <neuro.h>
+.Ft void
+.Fn NetLearnAll "BPNet *bp" "Data *data" "const int pattern" "const double eta" "const double alpha" "const double slope"
+.Sh 解説
+
+.Fn NetLearnAll
+関数は，
+.Em data
+が示す領域に保存されている学習パターン
+.Em pattern
+個による出力誤差を平均化し，平均化された出力誤差により１度に学習を
+行うものです．
+.Fn NetLearn
+関数では，１つのパターンについての学習が行われますが，
+.Fn NetLearnAll
+関数ではすべての学習パターンによって学習するため，学習は比較的緩やかなも
+のになります．
+
+.Sh 返り値
+なし
+
+.Sh 例
+
+.Bd -literal -offset indent
+#include "neuro.h"
+
+BPNet bp;
+Data *data;
+double eta, alpha, slope;
+int pattern;
+ ...
+NetLearnAll(&bp,data,pattern,eta,alpha,slope);
+
+.Sh 関連項目
+.Xr NetLearn 3 ,
+.Xr NetOutput 3 ,
+.Xr NetSqError 3
+
+.Sh 歴史
+1994年に開発し，それ以降メンテナンスされています．関西大学総合情報学部に
+おいて，1997年から知識情報処理実習IIで使用しています．
+.Sh バグ
+特にありません．発見した場合は，kobayasi@res.kutc.kansai-u.ac.jp まで
+ご連絡下さい．

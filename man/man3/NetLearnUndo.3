@@ -1,0 +1,49 @@
+.\"
+.\"
+.\"
+.\"
+.\" $Id: NetLearnUndo.3,v 1.1.1.1 2001/03/28 03:07:35 kobayasi Exp $
+.\"
+.Dd Sep 1, 1999
+.Dt NETLEARNUNDO 3
+.Os FreeBSD
+.Sh 名前
+.Nm NetLearnUndo
+.Nd 学習を１回分元に戻す
+.Sh 機能
+.Fd #include <neuro.h>
+.Ft void
+.Fn NetLearnUndo "BPNet *bp"
+.Sh 解説
+
+.Fn NetLearnUndo
+関数は，前回学習した結果を元に戻します．元に戻せるのは，
+.Fn NetLearn
+関数を呼び出した直後から，次の
+.Fn NetLearn
+関数の呼び出しまでの間です．
+
+.Sh 返り値
+なし
+
+.Sh 例
+
+.Bd -literal -offset indent
+#include "neuro.h"
+
+BPNet bp;
+ ...
+NetLearn(&bp,...);
+ ...
+NetLearnUndo(&bp);
+
+.Sh 関連項目
+.Xr NetLearn 3 ,
+.Xr NetLearnAll 3
+
+.Sh 歴史
+1994年に開発し，それ以降メンテナンスされています．関西大学総合情報学部に
+おいて，1997年から知識情報処理実習IIで使用しています．
+.Sh バグ
+特にありません．発見した場合は，kobayasi@res.kutc.kansai-u.ac.jp まで
+ご連絡下さい．

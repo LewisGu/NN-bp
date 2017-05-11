@@ -1,0 +1,51 @@
+
+CFLAGS=@CFLAGS@
+CPPFLAGS=@CPPFLAGS@
+CXXFLAGS=@CXXFLAGS@
+FFLAGS=@FFLAGS@
+DEFS=@DEFS@
+LDFLAGS=@LDFLAGS@
+LIBS=@LIBS@
+exec_prefix=@exec_prefix@
+prefix=@prefix@
+program_transform_name=@program_transform_name@
+bindir=@bindir@
+sbindir=@sbindir@
+libexecdir=@libexecdir@
+datadir=@datadir@
+sysconfdir=@sysconfdir@
+sharedstatedir=@sharedstatedir@
+localstatedir=@localstatedir@
+libdir=@libdir@
+includedir=@includedir@
+oldincludedir=@oldincludedir@
+infodir=@infodir@
+mandir=@mandir@
+CPP=@CPP@
+COMPILE.c = $(CC) $(DEFS) $(CFLAGS) $(CPPFLAGS) $(TARGET_ARCH) -c
+LINK.c = $(CC) $(CFLAGS) $(CPPFLAGS) $(LDFLAGS) $(TARGET_ARCH)
+MAKE=@MAKE@
+
+.c.o:
+	$(COMPILE.c) $? -o $@
+
+all:	bpl bpe1 bpe2
+
+bpl:	bpl.o neuro.o param_config.o read_lines.o
+	$(LINK.c) bpl.o neuro.o param_config.o read_lines.o -o $@ $(LIBS)
+
+bpe1:	bpe1.o neuro.o param_config.o read_lines.o
+	$(LINK.c) bpe1.o neuro.o param_config.o read_lines.o -o $@ $(LIBS)
+
+bpe2:	bpe2.o neuro.o param_config.o read_lines.o
+	$(LINK.c) bpe2.o neuro.o param_config.o read_lines.o -o $@ $(LIBS)
+
+bpl_all:	bpl_all.o neuro.o param_config.o read_lines.o
+	$(LINK.c) bpl_all.o neuro.o param_config.o read_lines.o -o $@ $(LIBS)
+
+distclean:
+	$(MAKE) clean
+	rm -f config.h config.status config.cache config.log Makefile
+
+clean:
+	rm -f *.o *~ *.bak bpl bpe1 bpe2

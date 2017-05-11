@@ -1,0 +1,54 @@
+.\"
+.\"
+.\"
+.\"
+.\" $Id: NetWeightInit.3,v 1.1.1.1 2001/03/28 03:07:35 kobayasi Exp $
+.\"
+.Dd Sep 1, 1999
+.Dt NETWEIGHTINIT 3
+.Os FreeBSD
+.Sh 名前
+.Nm NetWeightInit
+.Nd ニューラルネットワークの処理要素間の結合係数を初期化する
+.Sh 機能
+.Fd #include <neuro.h>
+.Ft void
+.Fn NetWeightInit "BPNet *bp"
+.Sh 解説
+
+.Fn NetWeightInit
+関数は，
+.Fn NetCreate
+関数で構築されたニューラルネットワークの処理要素間の結合係数を初期化しま
+す．結合係数は，-0.3から0.3の間の実数値となります．
+
+必ず，
+.Fn NetCreate
+関数の呼び出し後に呼び出すようにします．
+
+.Sh 返り値
+なし
+
+.Sh 例
+
+.Bd -literal -offset indent
+#include "neuro.h"
+
+BPNet bp;
+ ...
+NetCreate(&bp,...);
+NetWeightInit(&bp);
+
+.Sh 関連項目
+.Xr NetCreate 3 ,
+.Xr NetWeightLoad 3 ,
+.Xr NetWeightSave 3 ,
+.Xr NetPassLoad 3 ,
+.Xr NetPassSave 3
+
+.Sh 歴史
+1994年に開発し，それ以降メンテナンスされています．関西大学総合情報学部に
+おいて，1997年から知識情報処理実習IIで使用しています．
+.Sh バグ
+特にありません．発見した場合は，kobayasi@res.kutc.kansai-u.ac.jp まで
+ご連絡下さい．

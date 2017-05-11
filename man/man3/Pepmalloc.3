@@ -1,0 +1,46 @@
+.\"
+.\"
+.\"
+.\"
+.\" $Id: Pepmalloc.3,v 1.1.1.1 2001/03/28 03:07:35 kobayasi Exp $
+.\"
+.Dd Sep 1, 1999
+.Dt PEPMALLOC 3
+.Os FreeBSD
+.Sh 名前
+.Nm Pepmalloc
+.Nd 処理要素構造体へのポインタを取得する
+.Sh 機能
+.Fd #include <neuro.h>
+.Ft Pe *
+.Fn Pepmalloc "const int num"
+.Sh 解説
+
+.Fn Pepmalloc
+関数は，処理要素構造体へのポインタの取得する関数です．
+階層型ニューラルネットワークのある層の処理要素がすべて入る数に相当する
+.Em num
+個のポインタを取得します．
+.br
+.Xr Peppmalloc 3
+関数の後で呼び出されるべき関数です．
+.Sh 返り値
+正しく取得できた場合はそのポインタを，取得できなかった場合にはその時点で
+プログラムは終了します．
+.Sh 例
+次の例は，
+.Em 3
+個の処理要素の入る層を構成します．
+.Bd -literal -offset indent
+#include "neuro.h"
+
+Pe *pe;
+ ...
+pe = Pepmalloc(3);
+.Sh 参照
+.Xr Peppmalloc 3 ,
+.Sh 歴史
+1994年に開発し，それ以降メンテナンスされています．関西大学総合情報学部に
+おいて，1997年から知識情報処理実習IIで使用しています．
+.Sh バグ
+特にありません．

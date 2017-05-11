@@ -1,0 +1,47 @@
+.\"
+.\"
+.\"
+.\"
+.\" $Id: NetDuplicate.3,v 1.1.1.1 2001/03/28 03:07:35 kobayasi Exp $
+.\"
+.Dd Sep 1, 1999
+.Dt NETDUPLICATE 3
+.Os FreeBSD
+.Sh 名前
+.Nm NetDuplicate
+.Nd ニューラルネットワークを２重化する
+.Sh 機能
+.Fd #include <neuro.h>
+.Ft void
+.Fn NetDuplicate "BPNet *dst" "BPNet *src"
+.Sh 解説
+
+.Fn NetDuplicate
+関数は，
+.Em src
+が指し示すニューラルネットワークを
+.Em dst
+が指し示すニューラルネットワークにコピーし，ニューラルネットワークを２重
+化します．
+
+.Sh 返り値
+なし
+
+.Sh 例
+
+.Bd -literal -offset indent
+#include "neuro.h"
+
+BPNet bp1, bp2;
+ ...
+NetDuplicate(&bp1,&bp2);
+
+.Sh 関連項目
+.Xr NetCreate 3 ,
+
+.Sh 歴史
+1994年に開発し，それ以降メンテナンスされています．関西大学総合情報学部に
+おいて，1997年から知識情報処理実習IIで使用しています．
+.Sh バグ
+特にありません．発見した場合は，kobayasi@res.kutc.kansai-u.ac.jp まで
+ご連絡下さい．

@@ -1,0 +1,51 @@
+.\"
+.\"
+.\"
+.\"
+.\" $Id: NetSqError.3,v 1.1.1.1 2001/03/28 03:07:35 kobayasi Exp $
+.\"
+.Dd Sep 1, 1999
+.Dt NETSQERROR 3
+.Os FreeBSD
+.Sh 名前
+.Nm NetSqError
+.Nd 入力パターンによる出力誤差を求める
+.Sh 機能
+.Fd #include <neuro.h>
+.Ft double
+.Fn NetSqError "BPNet *bp" "Data data"
+.Sh 解説
+
+.Fn NetSqError
+関数は，入力，教師データパターン
+.Em data
+による出力誤差(二乗平均誤差)を求め，出力層の処理要素の誤差の平均値を返す．
+.Fn NetOutput
+関数によって計算された出力値を利用するため，
+.Fn NetOutput
+関数呼び出しの後でこの関数を呼び出さなければならない．
+
+.Sh 返り値
+出力誤差(二乗平均誤差，非負の値)を返す．
+.Sh 例
+
+.Bd -literal -offset indent
+#include "neuro.h"
+
+BPNet bp;
+Data  data;
+double errval, slope;
+ ...
+NetOutput(&bp,data,slope);
+errval = NetSqError(&bp,data);
+
+.Sh 関連項目
+.Xr NetOutput 3 ,
+.Xr NetVariance 3
+
+.Sh 歴史
+1994年に開発し，それ以降メンテナンスされています．関西大学総合情報学部に
+おいて，1997年から知識情報処理実習IIで使用しています．
+.Sh バグ
+特にありません．発見した場合は，kobayasi@res.kutc.kansai-u.ac.jp まで
+ご連絡下さい．

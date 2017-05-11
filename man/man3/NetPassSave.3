@@ -1,0 +1,57 @@
+.\"
+.\"
+.\"
+.\"
+.\" $Id: NetPassSave.3,v 1.1.1.1 2001/03/28 03:07:35 kobayasi Exp $
+.\"
+.Dd Sep 1, 1999
+.Dt NETPASSSAVE 3
+.Os FreeBSD
+.Sh 名前
+.Nm NetPassSave
+.Nd ニューラルネットワークの結合係数を保存する
+.Sh 機能
+.Fd #include <neuro.h>
+.Ft void
+.Fn NetPassSave "BPNet *bp" "const int learn" "const char *filename"
+.Sh 解説
+
+.Fn NetPassSave
+関数は，
+.Em filename
+で指定されたファイルにニューラルネットワークの結合係数を保存します．
+ファイルには，Little Endian で書き込むことになっているので，必要であれば
+関数内で Little Endian に変換しながら書き込みます．
+
+.Fn NetWeightSave
+関数と異なる点は，学習途中の結合係数だけでなく，学習時の結合係数の修正量
+も同時に書き込む点です．
+
+.Sh 返り値
+なし
+
+.Sh 例
+
+.Bd -literal -offset indent
+#include "neuro.h"
+
+BPNet bp;
+char *filename;
+ ...
+NetLearn(&bp,...);
+ ...
+NetPassSave(&bp, filename);
+
+.Sh 関連項目
+.Xr NetCreate 3 ,
+.Xr NetWeightInit 3 ,
+.Xr NetWeightLoad 3 ,
+.Xr NetWeightSave 3 ,
+.Xr NetPassLoad 3 ,
+
+.Sh 歴史
+1994年に開発し，それ以降メンテナンスされています．関西大学総合情報学部に
+おいて，1997年から知識情報処理実習IIで使用しています．
+.Sh バグ
+特にありません．発見した場合は，kobayasi@res.kutc.kansai-u.ac.jp まで
+ご連絡下さい．

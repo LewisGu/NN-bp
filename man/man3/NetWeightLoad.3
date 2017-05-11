@@ -1,0 +1,63 @@
+.\"
+.\"
+.\"
+.\"
+.\" $Id: NetWeightLoad.3,v 1.1.1.1 2001/03/28 03:07:35 kobayasi Exp $
+.\"
+.Dd Sep 1, 1999
+.Dt NETWEIGHTLOAD 3
+.Os FreeBSD
+.Sh 名前
+.Nm NetWeightLoad
+.Nd 結合係数の値を読み込む
+.Sh 機能
+.Fd #include <neuro.h>
+.Ft int
+.Fn NetWeightLoad "BPNet *bp" "const char *filename"
+.Sh 解説
+
+.Fn NetWeightLoad
+関数は，
+.Em filename
+で指定されたファイルから結合係数の値を読み込みます．
+
+.Em filename
+に保存されている値は，Little Endian ですので，必要であれば Big Endian に
+変換しながら読み込みます．
+
+.Sh 返り値
+次のような返り値があります．
+.Bl -tag -width Ds -offset indent
+.It Cm -1
+.Em filename
+が存在しない
+.It Cm 0
+読み込みに成功した
+.El
+
+.Sh 例
+
+.Bd -literal -offset indent
+#include "neuro.h"
+
+BPNet bp;
+char *filename;
+ ...
+NetCreate(&bp,...);
+NetWeightInit(&bp);
+ ...
+NetWeightLoad(&bp,filename);
+
+.Sh 関連項目
+.Xr NetCreate 3 ,
+.Xr NetWeightInit 3 ,
+.Xr NetWeightSave 3 ,
+.Xr NetPassLoad 3 ,
+.Xr NetPassSave 3
+
+.Sh 歴史
+1994年に開発し，それ以降メンテナンスされています．関西大学総合情報学部に
+おいて，1997年から知識情報処理実習IIで使用しています．
+.Sh バグ
+特にありません．発見した場合は，kobayasi@res.kutc.kansai-u.ac.jp まで
+ご連絡下さい．

@@ -1,0 +1,66 @@
+.\"
+.\"
+.\"
+.\"
+.\" $Id: NetDataInit.3,v 1.1.1.1 2001/03/28 03:07:35 kobayasi Exp $
+.\"
+.Dd Sep 1, 1999
+.Dt NETDATAINIT 3
+.Os FreeBSD
+.Sh 名前
+.Nm NetDataInit
+.Nd 階層型ニューラルネットワークの学習データを初期化する
+.Sh 機能
+.Fd #include <neuro.h>
+.Ft int
+.Fn NetDataInit "BPNet *bp" "Data *data" "const int pattern" "const char *filename"
+.Sh 解説
+
+.Fn NetDataInit
+関数は，階層型ニューラルネットワークを学習するためのデータを
+.Em filename
+から
+.Em pattern
+数の数を読み込み，
+.Em data
+内に保存します．この時に，
+.Em bp
+に格納されているネットワーク構造を利用します．
+.br
+ファイル
+.Em filename
+には，1つのパターンごとに
+.Pp
+.Bl -bullet -offset indent -compact
+.It
+入力データの並び
+.It
+教師データの並び
+.El
+.Pp
+の順で，テキスト形式でデータを記述することが必要です．
+.Sh 返り値
+データの読み込みに成功した場合には 0 を，失敗した場合にはその時点で
+プログラムが終了します．
+.Sh 例
+
+.Bd -literal -offset indent
+#include "neuro.h"
+
+BPNet bp;
+Data  *data;
+int   pattern;
+char  filename[128];
+ ...
+NetDataInit(&bp, data, pattern, filename);
+
+.Sh 関連項目
+.Xr NetDataInit2 3 ,
+.Xr NetDataInit3 3 ,
+.Xr NetDataInitRecog 3
+.Sh 歴史
+1994年に開発し，それ以降メンテナンスされています．関西大学総合情報学部に
+おいて，1997年から知識情報処理実習IIで使用しています．
+.Sh バグ
+特にありません．発見した場合は，kobayasi@res.kutc.kansai-u.ac.jp まで
+ご連絡下さい．

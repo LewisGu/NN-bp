@@ -1,0 +1,47 @@
+.\"
+.\"
+.\"
+.\"
+.\" $Id: NetFree.3,v 1.1.1.1 2001/03/28 03:07:35 kobayasi Exp $
+.\"
+.Dd Sep 1, 1999
+.Dt NETFREE 3
+.Os FreeBSD
+.Sh 名前
+.Nm NetFree
+.Nd 不要になった記憶領域を解放する
+.Sh 機能
+.Fd #include <neuro.h>
+.Ft void
+.Fn NetFree "Pe **pe" "int *num" "Data *data"
+.Sh 解説
+
+.Fn NetFree
+関数は，不要になった記憶領域を解放するための関数です．この関数では，
+Pe 型の
+.Em pe
+，int 型の
+.Em num
+，Data 型の
+.Em data
+が指し示す記憶領域を解放します．
+
+.Sh 返り値
+なし
+.Sh 例
+
+.Bd -literal -offset indent
+#include "neuro.h"
+
+.Sh 関連項目
+.Xr Peppmalloc 3 ,
+.Xr Pepmalloc 3 ,
+.Xr intmalloc 3 ,
+.Xr Dmalloc 3
+
+.Sh 歴史
+1994年に開発し，それ以降メンテナンスされています．関西大学総合情報学部に
+おいて，1997年から知識情報処理実習IIで使用しています．
+.Sh バグ
+特にありません．発見した場合は，kobayasi@res.kutc.kansai-u.ac.jp まで
+ご連絡下さい．

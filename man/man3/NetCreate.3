@@ -1,0 +1,52 @@
+.\"
+.\"
+.\"
+.\"
+.\" $Id: NetCreate.3,v 1.1.1.1 2001/03/28 03:07:35 kobayasi Exp $
+.\"
+.Dd Sep 1, 1999
+.Dt NETCREATE 3
+.Os FreeBSD
+.Sh 名前
+.Nm NetCreate
+.Nd 階層型ニューラルネットワークを構築する
+.Sh 機能
+.Fd #include <neuro.h>
+.Ft void
+.Fn NetCreate "BPNet *bp" "const int *num" "const int layer"
+.Sh 解説
+
+.Fn NetCreate
+関数は，int型の配列
+.Em num
+に保存されている処理要素数と，層の数
+.Em layer
+に基づいて，完全結合の階層型ニューラルネットワークを構築します．
+
+.Sh 返り値
+返り値はありません．結合係数などを保存するメモリが確保できなかった場合には，
+その時点でプログラムが終了します．
+
+.Sh 例
+
+.Bd -literal -offset indent
+#include "neuro.h"
+
+BPNet bp;
+int   *num, layer;
+ ...
+layer = 3;
+num = intmalloc(layer);
+NetCreate(&bp, num, layer);
+
+.Sh 関連項目
+.Xr Pepmalloc 3 ,
+.Xr dmalloc 3 ,
+.Xr intmalloc 3
+
+.Sh 歴史
+1994年に開発し，それ以降メンテナンスされています．関西大学総合情報学部に
+おいて，1997年から知識情報処理実習IIで使用しています．
+.Sh バグ
+特にありません．発見した場合は，kobayasi@res.kutc.kansai-u.ac.jp まで
+ご連絡下さい．

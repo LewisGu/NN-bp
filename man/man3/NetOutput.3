@@ -1,0 +1,45 @@
+.\"
+.\"
+.\"
+.\"
+.\" $Id: NetOutput.3,v 1.1.1.1 2001/03/28 03:07:35 kobayasi Exp $
+.\"
+.Dd Sep 1, 1999
+.Dt NETOUTPUT 3
+.Os FreeBSD
+.Sh 名前
+.Nm NetOutput
+.Nd 階層型ニューラルネットワークの出力値を計算する
+.Sh 機能
+.Fd #include <neuro.h>
+.Ft void
+.Fn NetOutput "BPNet *bp" "Data data" "const double slope"
+.Sh 解説
+
+.Fn NetOutput
+関数は，
+.Em data
+に格納されている入力データを用いて，階層型ニューラルネットワークの
+出力値を計算します．出力値は
+.Em bp
+構造体内の pe 構造体に格納されます．
+
+.Sh 返り値
+なし
+
+.Sh 例
+
+.Bd -literal -offset indent
+#include "neuro.h"
+
+.Sh 関連項目
+.Xr NetExtOutVal 3 ,
+.Xr NetSqError 3 ,
+.Xr NetVariance 3
+
+.Sh 歴史
+1994年に開発し，それ以降メンテナンスされています．関西大学総合情報学部に
+おいて，1997年から知識情報処理実習IIで使用しています．
+.Sh バグ
+特にありません．発見した場合は，kobayasi@res.kutc.kansai-u.ac.jp まで
+ご連絡下さい．

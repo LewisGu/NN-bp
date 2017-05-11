@@ -1,0 +1,83 @@
+.\"
+.\"
+.\"
+.\"
+.\" $Id: BPNet.3,v 1.1.1.1 2001/03/28 03:07:35 kobayasi Exp $
+.\"
+.Dd Sep 1, 1999
+.Dt BPNET 3
+.Os FreeBSD
+.Sh 名前
+.Nm BPNet
+.Nd 階層型ニューラルネットワーク構造体
+.Sh 機能
+.Fd #include <neuro.h>
+.\" .Ft 
+.\" .Fn Peppmalloc "const int num"
+.Sh 解説
+.Em BPNet
+構造体は以下のメンバ変数を持っています:
+
+.Bd -literal -offset indent
+struct bp_pe **pe; /\(** 処理要素構造体へのポインタのポインタ \(**/
+long   layer;      /\(** 階層の数 \(**/
+int    *pe_num;    /\(** 各層の処理要素数 \(**/
+.Ed
+
+.Em pe
+はポインタのポインタで，
+.Em pe_num
+配列に従って領域を確保された
+.Em struct bp_pe *pe
+構造体へのポインタを格納します．これは，
+.Fn NetCreate
+関数によって，定義されます．
+
+.Em layer
+は，階層型ニューラルネットワークの階層の数を管理する変数で，
+.Em pe
+変数の領域を確保するために用いられます．
+
+.Em struct bp_pe
+変数型は次のメンバ変数を持った構造体です:
+.Bd -literal -offset indent
+double OutVal;   /\(** 出力値 \(**/
+double Variance; /\(** 分散値 \(**/
+double Mean;     /\(** 平均値 \(**/
+double InVal;    /\(** 入力値 \(**/
+double ErrVal;   /\(** 誤差値 \(**/
+double ThreVal;  /\(** 閾値 \(**/
+double dThreVal; /\(** 閾値の修正量 \(**/
+double *WRVal;   /\(** 結合係数の配列 \(**/
+double *dWRVal;  /\(** 結合係数の修正量の配列 \(**/
+.Ed
+
+.Em OutVal
+は，
+.Em InVal
+を元に
+.Fn sigmoid
+関数で計算された処理要素の出力値です．この値を元にして，
+.Fn NetVariance
+関数によって
+.Em Variance
+の値が計算されます．
+.Em ErrVal
+は，出力層の処理要素においては純粋な二乗誤差の値，中間層においては誤差信
+号となります．
+
+.Em ThreVal
+はその処理要素の閾値，
+.Em *WRVal
+は１つ前の層の処理要素との間を結合している結合係数の配列です．
+.Em dThreVal
+，
+.Em *dWRVal
+はそれぞれの学習時の修正量です．
+
+.Sh 歴史
+1994年に開発し，それ以降メンテナンスされています．関西大学総合情報学部に
+おいて，1997年から知識情報処理実習IIで使用しています．
+.Sh バグ
+特にありません．発見した場合は，kobayasi@res.kutc.kansai-u.ac.jp まで
+ご連絡下さい．

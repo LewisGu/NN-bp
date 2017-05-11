@@ -1,0 +1,67 @@
+.\"
+.\"
+.\"
+.\"
+.\" $Id: NetExtOutval.3,v 1.1.1.1 2001/03/28 03:07:35 kobayasi Exp $
+.\"
+.Dd Sep 1, 1999
+.Dt NETEXTOUTVAL 3
+.Os FreeBSD
+.Sh 名前
+.Nm NetExtOutval
+.Nd ある層の処理要素の出力値を取り出す
+.Sh 機能
+.Fd #include <neuro.h>
+.Ft double *
+.Fn NetExtOutval "BPNet *bp" "const int layer"
+.Sh 解説
+
+.Fn NetExtOutval
+関数は，
+.Fn NetOutput
+関数によって計算され，
+.Em layer
+によって指定された層の出力値を配列として返す関数です．
+.Fn NetOutput
+関数によって計算された値を利用するため，
+.Fn NetOutput
+関数の呼び出しの後で使用しなければなりません．
+.br
+また，
+.Em layer
+は 0 以上の値で，かつ，構築したネットワークの層の数以内の
+値でなければなりません．この理由は自明です．
+
+.Sh 返り値
+.Bl -tag -width Ds -offset indent
+.It Cm NULL
+.Em layer
+が構築したネットワークの層の数の範囲を越えている．
+.It Cm それ以外
+出力値の取り出しが成功した．
+.El
+
+.Sh 例
+
+.Bd -literal -offset indent
+#include "neuro.h"
+
+BPNet bp;
+Data data;
+int layer;
+double *val, slope;
+ ...
+NetOutput(&bp,data,slope);
+val = NetExtOutval(&bp,layer);
+
+.Sh 関連項目
+.Xr NetOutput 3 ,
+.Xr NetVariance 3 ,
+.Xr NetSqError 3
+
+.Sh 歴史
+1994年に開発し，それ以降メンテナンスされています．関西大学総合情報学部に
+おいて，1997年から知識情報処理実習IIで使用しています．
+.Sh バグ
+特にありません．発見した場合は，kobayasi@res.kutc.kansai-u.ac.jp まで
+ご連絡下さい．

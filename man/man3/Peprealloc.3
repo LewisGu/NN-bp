@@ -1,0 +1,52 @@
+.\"
+.\"
+.\"
+.\"
+.\" $Id: Peprealloc.3,v 1.1.1.1 2001/03/28 03:07:35 kobayasi Exp $
+.\"
+.Dd Sep 1, 1999
+.Dt PEPREALLOC 3
+.Os FreeBSD
+.Sh 名前
+.Nm Peprealloc
+.Nd 処理要素構造体のメモリ領域を再度取得する
+.Sh 機能
+.Fd #include <neuro.h>
+.Ft Pe *
+.Fn Peprealloc "Pe *pe" "const int num"
+.Sh 解説
+
+.Fn Peprealloc
+関数は，処理要素構造体のメモリ領域を再度取得する関数です．
+.Em num
+個のメモリ領域を確保し，
+.Em pe
+の指し示す領域の内容を確保されたメモリ領域にコピーします．
+.br
+.Em pe
+に確保されたメモリ領域よりも
+.Em num
+で確保したメモリ領域の大きさが大きい場合には，残りの領域は不定となります．
+.Sh 返り値
+正しく取得できた場合はそのポインタを，取得できなかった場合にはその時点で
+プログラムは終了します．
+.Sh 例
+次の例は，
+.Em pe
+に確保されたメモリ領域を
+.Em 10
+個の処理要素の入るメモリ領域に確保します．
+.Bd -literal -offset indent
+#include "neuro.h"
+
+Pe *pe,*pe2;
+ ...
+pe2 = Peprealloc(pe,3);
+.Sh 参照
+.Xr Pepmalloc 3 ,
+.Sh 歴史
+1994年に開発し，それ以降メンテナンスされています．関西大学総合情報学部に
+おいて，1997年から知識情報処理実習IIで使用しています．
+.Sh バグ
+特にありません．発見した場合には，kobayasi@res.kutc.kansai-u.ac.jp まで
+ご連絡下さい．

@@ -1,0 +1,70 @@
+.\"
+.\"
+.\"
+.\"
+.\" $Id: NetLearn.3,v 1.1.1.1 2001/03/28 03:07:35 kobayasi Exp $
+.\"
+.Dd Sep 1, 1999
+.Dt NETLEARN 3
+.Os FreeBSD
+.Sh 名前
+.Nm NetLearn
+.Nd 階層型ニューラルネットワークの学習
+.Sh 機能
+.Fd #include <neuro.h>
+.Ft void
+.Fn NetLearn "BPNet *bp" "Data data" "const double eta" "const double alpha" "const double slope"
+.Sh 解説
+
+.Fn NetLearn
+関数は，バックプロパゲーション学習法により，
+.Em data
+が持つ入力データと教師データの関係を学習します．この時，
+学習係数
+.Em eta
+，慣性係数
+.Em alpha
+で学習を行います．
+.Fn NetOutput
+関数で用いた
+.Em slope
+と同じ値を使わないと意味がありません．
+.br
+.Fn NetOutput
+関数で計算した出力値を用いて学習を行うため，
+.Fn NetOutput
+関数の呼び出しの後で
+.Fn NetLearn
+関数を呼び出す必要があります．
+.br
+すべての学習パターンを一度に学習するためには，
+.Fn NetLearnAll
+関数を利用して下さい．
+
+.Sh 返り値
+なし
+.Sh 例
+
+.Bd -literal -offset indent
+#include "neuro.h"
+
+BPNet bp;
+Data data;
+double eta, alpha, slope;
+ ...
+NetOutput(&bp,data,slope);
+NetLearn(&bp,data,eta,alpha,slope);
+
+.Sh 関連項目
+.Xr NetOutput 3 ,
+.Xr NetVariance 3 ,
+.Xr NetSqError 3 ,
+.Xr NetLearnAll 3 ,
+.Xr NetLearnUndo 3
+
+.Sh 歴史
+1994年に開発し，それ以降メンテナンスされています．関西大学総合情報学部に
+おいて，1997年から知識情報処理実習IIで使用しています．
+.Sh バグ
+特にありません．発見した場合は，kobayasi@res.kutc.kansai-u.ac.jp まで
+ご連絡下さい．
